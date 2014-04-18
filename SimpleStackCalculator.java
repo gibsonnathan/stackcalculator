@@ -4,17 +4,13 @@
 import java.util.*;
 public class SimpleStackCalculator {
 
-
     public static void main(String[]args){
-
         Scanner sc = new Scanner(System.in);
         Stack<Float> stack = new Stack<Float>();
-
-
         while(sc.hasNext()){
             String input = sc.next();
-            for(String i : input.split("")){
-                if(isfloat(i)){
+            for(String i : input.split(" ")){
+                if(isFloat(i)){
                     stack.push(Float.parseFloat(i));
                 }
                 if(i.equals("p")){
@@ -44,10 +40,9 @@ public class SimpleStackCalculator {
 
             }
         }
-
     }
 
-    public static boolean isfloat(String str)
+    public static boolean isFloat(String str)
     {
         try
         {
@@ -59,6 +54,4 @@ public class SimpleStackCalculator {
         }
         return true;
     }
-
-
 }
