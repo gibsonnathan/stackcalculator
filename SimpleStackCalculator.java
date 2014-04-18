@@ -15,6 +15,7 @@ public class SimpleStackCalculator {
                 }
                 if(i.equals("p")){
                     System.out.println(stack.peek());
+                    System.out.println();
                 }else if(i.equals("P")){
                     stack.pop();
                 }else if(i.equals("c")){
@@ -26,7 +27,10 @@ public class SimpleStackCalculator {
                     float next = stack.pop();
                     stack.push(top);
                     stack.push(next);
-                }else if (i.equals("+")){
+                }else if(i.equals("f")){
+                    printStack(stack);
+                }
+                else if (i.equals("+")){
                     stack.push(stack.pop() + stack.pop());
                 }else if (i.equals("-")){
                     stack.push(stack.pop() - stack.pop());
@@ -37,7 +41,6 @@ public class SimpleStackCalculator {
                 else if (i.equals("/")){
                     stack.push(stack.pop() / stack.pop());
                 }
-
             }
         }
     }
@@ -53,5 +56,15 @@ public class SimpleStackCalculator {
             return false;
         }
         return true;
+    }
+
+    public static void printStack(Stack<Float> s){
+        System.out.println("");
+        System.out.println("Stack Size: " + s.size());
+        System.out.println("------");
+        for(int i = s.size() -1; i >= 0; i--){
+            System.out.println(s.elementAt(i));
+        }
+        System.out.println("");
     }
 }
