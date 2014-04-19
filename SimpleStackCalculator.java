@@ -10,37 +10,68 @@ public class SimpleStackCalculator {
         while(sc.hasNext()){
             String input = sc.next();
             for(String i : input.split(" ")){
+
                 if(isFloat(i)){
                     stack.push(Float.parseFloat(i));
                 }
+
                 if(i.equals("p")){
-                    System.out.println(stack.peek());
-                    System.out.println();
+                    try{
+                        System.out.println(stack.peek());
+                    }catch(EmptyStackException e){
+                        System.err.println("Empty Stack");
+                    }
                 }else if(i.equals("P")){
-                    stack.pop();
+                    try{
+                        stack.pop();
+                    }catch (EmptyStackException e){
+                        System.err.println("Empty Stack");
+                    }
                 }else if(i.equals("c")){
                     stack.clear();
                 }else if(i.equals("d")){
-                    stack.push(Float.valueOf(stack.peek()));
-                }else if (i.equals("r")){
-                    float top = stack.pop();
-                    float next = stack.pop();
-                    stack.push(top);
-                    stack.push(next);
-                }else if(i.equals("f")){
+                    try{
+                        stack.push(Float.valueOf(stack.peek()));
+                    }catch(EmptyStackException e){
+                        System.err.println("Empty Stack");
+                    }
+                }
+
+                else if (i.equals("r")){
+                    if(stack.size() >= 2){
+                        float top = stack.pop();
+                        float second = stack.pop();
+                        stack.push(second);
+                        stack.push(top);
+                    }else{
+                        System.err.println("Not enough elements on stack to " +
+                                "perform this operation");
+                    }
+                 }
+                else if(i.equals("f")){
                     printStack(stack);
                 }
-                else if (i.equals("+")){
-                    stack.push(stack.pop() + stack.pop());
-                }else if (i.equals("-")){
-                    stack.push(stack.pop() - stack.pop());
+                if(i.equals("+") || i.equals("-") || i.equals("/") || i
+                        .equals("*")){
+                    if(stack.size() < 2){
+                        System.err.println("Not enough elements on stack to " +
+                                "perform this operation");
+                        break;
+                    }
+                    if (i.equals("+")){
+                        stack.push(stack.pop() + stack.pop());
+                    }else if (i.equals("-")){
+                        stack.push(stack.pop() - stack.pop());
+                    }
+                    else if (i.equals("*")){
+                        stack.push(stack.pop() * stack.pop());
+                    }
+                    else if (i.equals("/")){
+                        stack.push(stack.pop() / stack.pop());
+                    }
                 }
-                else if (i.equals("*")){
-                    stack.push(stack.pop() * stack.pop());
-                }
-                else if (i.equals("/")){
-                    stack.push(stack.pop() / stack.pop());
-                }
+
+
             }
         }
     }
@@ -51,7 +82,7 @@ public class SimpleStackCalculator {
         {
             float f = Float.parseFloat(str);
         }
-        catch(NumberFormatException nfe)
+        catch(NumberFormatException e)
         {
             return false;
         }
