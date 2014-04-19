@@ -52,8 +52,8 @@ public class SimpleStackCalculator {
                     if(stack.size() >= 2){
                         float top = stack.pop();
                         float second = stack.pop();
-                        stack.push(second);
                         stack.push(top);
+                        stack.push(second);
                     }else{
                         System.err.println("Not enough elements on stack to " +
                                 "perform this operation");
@@ -70,15 +70,23 @@ public class SimpleStackCalculator {
                         break;
                     }
                     if (i.equals("+")){
-                        stack.push(stack.pop() + stack.pop());
+                        float num1 = stack.pop();
+                        float num2 = stack.pop();
+                        stack.push(num1 + num2);
                     }else if (i.equals("-")){
-                        stack.push(stack.pop() - stack.pop());
+                        float num1 = stack.pop();
+                        float num2 = stack.pop();
+                        stack.push(num2 - num1);
                     }
                     else if (i.equals("*")){
-                        stack.push(stack.pop() * stack.pop());
+                        float num1 = stack.pop();
+                        float num2 = stack.pop();
+                        stack.push(num1 * num2);
                     }
                     else if (i.equals("/")){
-                        stack.push(stack.pop() / stack.pop());
+                        float num1 = stack.pop();
+                        float num2 = stack.pop();
+                        stack.push(num2 / num1);
                     }
                 }
 
