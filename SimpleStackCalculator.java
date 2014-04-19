@@ -88,7 +88,7 @@ public class SimpleStackCalculator {
     }
 
     public static boolean isFraction(String str){
-        Pattern p = Pattern.compile("[\\d]+[//][\\d]+");
+        Pattern p = Pattern.compile("[-]?[\\d]+[//][\\d]+");
         Matcher m = p.matcher(str);
         boolean b = m.matches();
         return b;
