@@ -2,6 +2,9 @@
  * Created by nathan on 4/18/14.
  */
 import java.util.*;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+
 public class SimpleStackCalculator {
 
     public static void main(String[]args){
@@ -13,6 +16,14 @@ public class SimpleStackCalculator {
 
                 if(isFloat(i)){
                     stack.push(Float.parseFloat(i));
+                }
+
+                if(isFraction(i)){
+                    String[] fraction = i.split("/");
+                    int num = Integer.parseInt(fraction[0]);
+                    int den = Integer.parseInt(fraction[1]);
+                    stack.push((float) num / den);
+
                 }
 
                 if(i.equals("p")){
@@ -74,6 +85,13 @@ public class SimpleStackCalculator {
 
             }
         }
+    }
+
+    public static boolean isFraction(String str){
+        Pattern p = Pattern.compile("[\\d]+[//][\\d]+");
+        Matcher m = p.matcher(str);
+        boolean b = m.matches();
+        return b;
     }
 
     public static boolean isFloat(String str)
