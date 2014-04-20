@@ -1,6 +1,7 @@
 /**
  * Created by nathan on 4/18/14.
  */
+
 import java.util.*;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
@@ -13,19 +14,15 @@ public class SimpleStackCalculator {
         while(sc.hasNext()){
             String input = sc.next();
             for(String i : input.split(" ")){
-
                 if(isFloat(i)){
                     stack.push(Float.parseFloat(i));
                 }
-
                 if(isFraction(i)){
                     String[] fraction = i.split("/");
                     int num = Integer.parseInt(fraction[0]);
                     int den = Integer.parseInt(fraction[1]);
                     stack.push((float) num / den);
-
                 }
-
                 if(i.equals("p")){
                     try{
                         System.out.println(stack.peek());
@@ -47,7 +44,6 @@ public class SimpleStackCalculator {
                         System.err.println("Empty Stack");
                     }
                 }
-
                 else if (i.equals("r")){
                     if(stack.size() >= 2){
                         float top = stack.pop();
@@ -86,12 +82,27 @@ public class SimpleStackCalculator {
                     else if (i.equals("/")){
                         float num1 = stack.pop();
                         float num2 = stack.pop();
-                        stack.push(num2 / num1);
+                        try{
+                            stack.push(divide(num1, num2));
+                        }catch(DivisionByZeroException e){
+                            System.out.println(e.getMessage());
+                            stack.push(num2);
+                            stack.push(num1);
+                        }
+
                     }
                 }
-
-
             }
+        }
+    }
+
+    public static float divide(float num1,
+                               float num2) throws DivisionByZeroException{
+        if(num1 == 0.0){
+            throw new DivisionByZeroException("Division by Zero error");
+        }
+        else{
+            return num2 / num1;
         }
     }
 
@@ -116,12 +127,12 @@ public class SimpleStackCalculator {
     }
 
     public static void printStack(Stack<Float> s){
-        System.out.println("");
-        System.out.println("Stack Size: " + s.size());
-        System.out.println("------");
+        //System.out.println("");
+        //System.out.println("Stack Size: " + s.size());
+        //System.out.println("------");
         for(int i = s.size() -1; i >= 0; i--){
             System.out.println(s.elementAt(i));
         }
-        System.out.println("");
+        //System.out.println("");
     }
 }
