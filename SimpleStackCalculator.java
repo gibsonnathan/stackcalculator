@@ -29,7 +29,7 @@ public class SimpleStackCalculator {
                 if(isFloat(i)){
                     stack.push(Float.parseFloat(i));
                 }
-                //if the i is a fraction, the result of the fractions
+                //if i is a fraction, the result of the fraction's
                 // division is pushed onto the stack
                 if(isFraction(i)){
                     String[] fraction = i.split("/");
@@ -41,24 +41,24 @@ public class SimpleStackCalculator {
                         System.out.println(e.getMessage());
                     }
                 }
-                //if i is equal to "p" print peek to the screen
+                //if i is equal to "p", print peek to the screen
                 if(i.equals("p")){
                     try{
                         System.out.println(stack.peek());
                     }catch(EmptyStackException e){
                         System.err.println("Empty Stack");
                     }
-                //if i is equal to "P" pop the stack
+                //if i is equal to "P", pop the stack
                 }else if(i.equals("P")){
                     try{
                         stack.pop();
                     }catch (EmptyStackException e){
                         System.err.println("Empty Stack");
                     }
-                //if i is equal to "c" clear the stack
+                //if i is equal to "c", clear the stack
                 }else if(i.equals("c")){
                     stack.clear();
-                //if i is equal to "d" duplicate the top element on the
+                //if i is equal to "d", duplicate the top element on the
                 // stack
                 }else if(i.equals("d")){
                     try{
@@ -67,7 +67,7 @@ public class SimpleStackCalculator {
                         System.err.println("Empty Stack");
                     }
                 }
-                //if i is equal to "r" reverse the top two elements on
+                //if i is equal to "r", reverse the top two elements on
                 // the stack
                 else if (i.equals("r")){
                     if(stack.size() >= 2){
@@ -80,7 +80,7 @@ public class SimpleStackCalculator {
                                 "perform this operation");
                     }
                  }
-                //if i is equal to "f" the stack is printed out
+                //if i is equal to "f", the stack is printed out
                 else if(i.equals("f")){
                     printStack(stack);
                 }

@@ -1,5 +1,5 @@
 /**
- * Created by nathan on 4/18/14.
+ * Exception for division by zero ie 3/0
  */
 public class DivisionByZeroException extends ArithmeticException {
 
